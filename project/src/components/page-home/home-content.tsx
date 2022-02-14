@@ -1,12 +1,19 @@
 import PlaceCard from '../place-card/place-card';
+import * as React from 'react';
 
-function HomeContent(): JSX.Element {
+type HomeContentProps = {
+  offersCount: number,
+}
+
+function HomeContent(props: HomeContentProps): JSX.Element {
+  const {offersCount} = props;
+
   return (
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">312 places to stay in Amsterdam</b>
+          <b className="places__found">${offersCount} places to stay in Amsterdam</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>

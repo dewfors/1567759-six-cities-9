@@ -1,17 +1,18 @@
+import * as React from 'react';
 import Header from '../header/header';
-import Main from '../main/main';
 
 type PageProps = {
   className: string,
+  children: React.ReactNode,
 }
 
 function Page(props: PageProps): JSX.Element {
-  const {className} = props;
+  const {className, children} = props;
 
   return (
     <div className={`page ${className}`}>
       <Header />
-      <Main className={'page__main--index'}/>
+      {children}
     </div>
   );
 }

@@ -1,18 +1,17 @@
-import Citylist from '../page-home/city-list';
-import HomeContent from '../page-home/home-content';
+import * as React from 'react';
+
 
 type MainProps = {
   className: string,
+  children: React.ReactNode,
 }
 
 function Main(props: MainProps):JSX.Element {
-  const {className} = props;
+  const {className, children} = props;
 
   return (
     <div className={`page__main ${className}`}>
-      <h1 className="visually-hidden">Cities</h1>
-      <Citylist />
-      <HomeContent />
+      {children}
     </div>
   );
 }

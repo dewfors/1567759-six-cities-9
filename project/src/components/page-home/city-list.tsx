@@ -1,6 +1,6 @@
 
 
-function Citylist(): JSX.Element {
+function CityList(): JSX.Element {
   return (
     <div className="tabs">
       <section className="locations container">
@@ -41,4 +41,4 @@ function Citylist(): JSX.Element {
   );
 }
 
-export default Citylist;
+export default CityList;
