@@ -1,5 +1,5 @@
-import PlaceCard from '../place-card/place-card';
-import * as React from 'react';
+import React from 'react';
+import PlaceCard from '../../place-card/place-card';
 
 type HomeContentProps = {
   offersCount: number,

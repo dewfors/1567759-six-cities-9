@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Header from '../header/header';
+import React from 'react';
+import Header from '../../header/header';
 
 
 function PageLogin(): JSX.Element {
