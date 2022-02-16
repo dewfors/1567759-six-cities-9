@@ -1,10 +1,11 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute} from '../../utils/const';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import PageHome from '../../pages/page-home/page-home';
 import PageLogin from '../../pages/page-login/page-login';
-import PageFavorites from '../../pages/page-favorites/page-favorites';
 import PageOffer from '../../pages/page-offer/page-offer';
 import PageNotFound from '../../pages/page-not-found/page-not-found';
+import PrivateRoute from '../private-route/private-route';
+import PageFavorites from '../../pages/page-favorites/page-favorites';
 
 function App(): JSX.Element {
   return (
@@ -20,7 +21,13 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Favorites}
-          element={<PageFavorites />}
+          element={
+            <PrivateRoute
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            >
+              <PageFavorites />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Room}
