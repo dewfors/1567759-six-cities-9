@@ -1,4 +1,4 @@
-import PageHome from '../pages/page-home/page-home';
+import PageHome from '../../pages/page-home/page-home';
 
 function App(): JSX.Element {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import Page from '../../page/page';
-import Main from '../../main/main';
+import Page from '../../components/page/page';
+import Main from '../../components/main/main';
 import CityList from './city-list';
 import HomeContent from './home-content';
 
