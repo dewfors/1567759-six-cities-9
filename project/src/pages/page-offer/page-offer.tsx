@@ -1,6 +1,13 @@
+import {useParams} from 'react-router-dom';
 import Header from '../../components/header/header';
 
 function PageOffer() {
+
+  const params = useParams();
+  // eslint-disable-next-line no-console
+  console.log(params);
+
+  // const {id} = params;
 
   return (
     <div className="page">

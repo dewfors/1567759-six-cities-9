@@ -1,12 +1,22 @@
+// import React, {useState} from 'react';
 import React from 'react';
-import PlaceCard from '../../components/place-card/place-card';
+import {Offers} from '../../types/offers';
+import ListOffers from '../../components/list-offers/list-offers';
 
 type HomeContentProps = {
-  offersCount: number,
+  offers: Offers;
 }
 
 function HomeContent(props: HomeContentProps): JSX.Element {
-  const {offersCount} = props;
+  const {offers} = props;
+  const offersCount = offers.length;
+
+  // Todo
+  // const [activeOfferCardId, setActiveOfferCardId] = useState(0);
+  //
+  // const handleActiveOfferCard = (offerId: number) => {
+  //   setActiveOfferCardId(offerId);
+  // };
 
   return (
     <div className="cities">
@@ -29,13 +39,9 @@ function HomeContent(props: HomeContentProps): JSX.Element {
               <li className="places__option" tabIndex={0}>Top rated first</li>
             </ul>
           </form>
-          <div className="cities__places-list places__list tabs__content">
-            <PlaceCard />
-            <PlaceCard />
-            <PlaceCard />
-            <PlaceCard />
-            <PlaceCard />
-          </div>
+
+          <ListOffers offers = {offers as Offers} />
+
         </section>
         <div className="cities__right-section">
           <section className="cities__map map" />
