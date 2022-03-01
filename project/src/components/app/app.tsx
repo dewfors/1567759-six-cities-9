@@ -7,7 +7,6 @@ import PageNotFound from '../../pages/page-not-found/page-not-found';
 import PrivateRoute from '../private-route/private-route';
 import PageFavorites from '../../pages/page-favorites/page-favorites';
 import {Offers} from '../../types/offers';
-// import {offers} from "../../mocks/offers";
 
 type AppProps = {
   offers: Offers;

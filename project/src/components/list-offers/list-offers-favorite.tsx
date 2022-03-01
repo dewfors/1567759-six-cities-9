@@ -15,10 +15,6 @@ function ListOffersFavorite(props: ListOffersFavoriteProps): JSX.Element {
   const {offers} = props;
   const listCityOffers = getListCityOffers(offers);
 
-
-  // eslint-disable-next-line no-console
-  console.log(listCityOffers);
-
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
