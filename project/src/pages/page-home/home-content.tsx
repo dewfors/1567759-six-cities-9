@@ -1,4 +1,3 @@
-// import React, {useState} from 'react';
 import React from 'react';
 import {Offers} from '../../types/offers';
 import ListOffers from '../../components/list-offers/list-offers';
@@ -10,13 +9,6 @@ type HomeContentProps = {
 function HomeContent(props: HomeContentProps): JSX.Element {
   const {offers} = props;
   const offersCount = offers.length;
-
-  // Todo
-  // const [activeOfferCardId, setActiveOfferCardId] = useState(0);
-  //
-  // const handleActiveOfferCard = (offerId: number) => {
-  //   setActiveOfferCardId(offerId);
-  // };
 
   return (
     <div className="cities">

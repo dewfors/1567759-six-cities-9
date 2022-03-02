@@ -21,7 +21,6 @@ function Stars(props: StarsProps): JSX.Element{
           <input
             className="form__rating-input visually-hidden"
             name="rating"
-            // value={`${item.id}`}
             value={`${currentValue}`}
             id={`${item.id}-stars`}
             type="radio"

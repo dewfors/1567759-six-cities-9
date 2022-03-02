@@ -11,8 +11,6 @@ function PageFavorites(props: PageFavoritesProps): JSX.Element {
 
   const {offers} = props;
   const offersFavorites = offers.filter((offer) => offer.isFavorite);
-  // eslint-disable-next-line no-console
-  console.log(offersFavorites);
 
   const content = <ListOffersFavorite offers={offersFavorites} />;
 

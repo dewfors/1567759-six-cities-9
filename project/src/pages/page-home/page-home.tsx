@@ -9,11 +9,10 @@ type PageHomeProps = {
   offers: Offers;
 }
 
-function PageHome({offers}: PageHomeProps): JSX.Element {
-
+function PageHome(props: PageHomeProps): JSX.Element {
+  const {offers} = props;
   const isOffersEmpty = false;
   const pageMainIndexEmptyClassName = isOffersEmpty ? 'page__main--index-empty' : '';
-  // const offersCount = offers.length;
 
   return (
     <Page className="page--gray page--main">
