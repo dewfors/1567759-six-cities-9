@@ -1,10 +1,7 @@
-import {useParams} from 'react-router-dom';
 import Header from '../../components/header/header';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
 
 function PageOffer() {
-
-  const params = useParams();
 
   return (
     <div className="page">
