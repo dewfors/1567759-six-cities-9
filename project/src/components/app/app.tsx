@@ -6,14 +6,19 @@ import PageOffer from '../../pages/page-offer/page-offer';
 import PageNotFound from '../../pages/page-not-found/page-not-found';
 import PrivateRoute from '../private-route/private-route';
 import PageFavorites from '../../pages/page-favorites/page-favorites';
+import {Offers} from '../../types/offers';
 
-function App(): JSX.Element {
+type AppProps = {
+  offers: Offers;
+}
+
+function App({offers}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<PageHome />}
+          element={<PageHome offers = {offers} />}
         />
         <Route
           path={AppRoute.Login}
@@ -23,9 +28,9 @@ function App(): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <PageFavorites />
+              <PageFavorites offers = {offers} />
             </PrivateRoute>
           }
         />
