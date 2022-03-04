@@ -18,3 +18,8 @@ export const FormReviewKey = {
   STARS: 'stars',
   REVIEW: 'review',
 };
+
+export enum Pins {
+  Normal = 'img/pin.svg',
+  Active = 'img/pin-active.svg',
+}

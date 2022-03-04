@@ -3,11 +3,11 @@ import {Offers} from '../types/offers';
 export const offers: Offers = [
   {
     'city': {
-      'name': 'Cologne',
+      'name': 'Amsterdam',
       'location': {
-        'latitude': 50.938361,
-        'longitude': 6.959974,
-        'zoom': 13,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
+        'zoom': 12,
       },
     },
     'previewImage': 'https://9.react.pages.academy/static/hotel/13.jpg',
@@ -55,18 +55,18 @@ export const offers: Offers = [
     },
     'description': 'I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!',
     'location': {
-      'latitude': 50.916361,
-      'longitude': 6.944974,
+      'latitude': 52.3809553943508,
+      'longitude': 4.939309666406198,
       'zoom': 16,
     },
     'id': 1,
   },
   {
     'city': {
-      'name': 'Paris',
+      'name': 'Amsterdam',
       'location': {
-        'latitude': 48.85661,
-        'longitude': 2.351499,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
         'zoom': 13,
       },
     },
@@ -110,18 +110,18 @@ export const offers: Offers = [
     },
     'description': 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.',
     'location': {
-      'latitude': 48.843610000000005,
-      'longitude': 2.338499,
+      'latitude': 52.3909553943508,
+      'longitude': 4.929309666406198,
       'zoom': 16,
     },
     'id': 2,
   },
   {
     'city': {
-      'name': 'Hamburg',
+      'name': 'Amsterdam',
       'location': {
-        'latitude': 53.550341,
-        'longitude': 10.000654,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
         'zoom': 13,
       },
     },
@@ -167,18 +167,18 @@ export const offers: Offers = [
     },
     'description': 'I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!',
     'location': {
-      'latitude': 53.529341,
-      'longitude': 9.975654,
+      'latitude': 52.369553943508,
+      'longitude': 4.85309666406198,
       'zoom': 16,
     },
     'id': 3,
   },
   {
     'city': {
-      'name': 'Brussels',
+      'name': 'Amsterdam',
       'location': {
-        'latitude': 50.846557,
-        'longitude': 4.351697,
+        'latitude': 52.37454,
+        'longitude': 4.897976,
         'zoom': 13,
       },
     },
@@ -220,63 +220,10 @@ export const offers: Offers = [
     },
     'description': 'I am happy to welcome you to my apartment in the city center! Three words: location, cosy and chic!',
     'location': {
-      'latitude': 50.842557,
-      'longitude': 4.3536969999999995,
+      'latitude': 52.3909553943508,
+      'longitude': 4.85309666406198,
       'zoom': 16,
     },
     'id': 4,
-  },
-  {
-    'city': {
-      'name': 'Cologne',
-      'location': {
-        'latitude': 50.938361,
-        'longitude': 6.959974,
-        'zoom': 13,
-      },
-    },
-    'previewImage': 'https://9.react.pages.academy/static/hotel/7.jpg',
-    'images': [
-      'https://9.react.pages.academy/static/hotel/3.jpg',
-      'https://9.react.pages.academy/static/hotel/15.jpg',
-      'https://9.react.pages.academy/static/hotel/10.jpg',
-      'https://9.react.pages.academy/static/hotel/4.jpg',
-      'https://9.react.pages.academy/static/hotel/13.jpg',
-      'https://9.react.pages.academy/static/hotel/11.jpg',
-      'https://9.react.pages.academy/static/hotel/20.jpg',
-      'https://9.react.pages.academy/static/hotel/6.jpg',
-      'https://9.react.pages.academy/static/hotel/9.jpg',
-      'https://9.react.pages.academy/static/hotel/16.jpg',
-      'https://9.react.pages.academy/static/hotel/12.jpg',
-      'https://9.react.pages.academy/static/hotel/18.jpg',
-      'https://9.react.pages.academy/static/hotel/8.jpg',
-      'https://9.react.pages.academy/static/hotel/5.jpg',
-    ],
-    'title': 'Amazing and Extremely Central Flat',
-    'isFavorite': true,
-    'isPremium': false,
-    'rating': 2.7,
-    'type': 'room',
-    'bedrooms': 1,
-    'maxAdults': 2,
-    'price': 235,
-    'goods': [
-      'Washer',
-      'Breakfast',
-      'Laptop friendly workspace',
-    ],
-    'host': {
-      'id': 25,
-      'name': 'Angelina',
-      'isPro': true,
-      'avatarUrl': 'img/avatar-angelina.jpg',
-    },
-    'description': 'This is a place for dreamers to reset, reflect, and create. Designed with a \'slow\' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.',
-    'location': {
-      'latitude': 50.918461,
-      'longitude': 6.969974,
-      'zoom': 16,
-    },
-    'id': 6,
   },
 ];
