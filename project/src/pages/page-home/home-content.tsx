@@ -1,6 +1,7 @@
 import React from 'react';
 import {Offers} from '../../types/offers';
 import ListOffers from '../../components/list-offers/list-offers';
+import Map from '../../components/map/map';
 
 type HomeContentProps = {
   offers: Offers;
@@ -9,6 +10,9 @@ type HomeContentProps = {
 function HomeContent(props: HomeContentProps): JSX.Element {
   const {offers} = props;
   const offersCount = offers.length;
+  const city = offers[0].city;
+  const points = offers.map(({ id, location }) => ({ id, location }));
+  const selectedPoint = points[0].id;
 
   return (
     <div className="cities">
@@ -36,7 +40,7 @@ function HomeContent(props: HomeContentProps): JSX.Element {
 
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map" />
+          <Map city={city} points={points} selectedPoint={selectedPoint} />
         </div>
       </div>
     </div>
