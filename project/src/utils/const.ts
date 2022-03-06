@@ -1,6 +1,8 @@
 export const MAX_PERSENT = 100;
 export const MAX_STARS = 5;
 
+export const IMG_URL = 'img/';
+
 export enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -20,6 +22,6 @@ export const FormReviewKey = {
 };
 
 export enum Pins {
-  Normal = 'img/pin.svg',
-  Active = 'img/pin-active.svg',
+  Normal = 'pin.svg',
+  Active = 'pin-active.svg',
 }
