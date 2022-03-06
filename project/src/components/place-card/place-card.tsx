@@ -6,16 +6,21 @@ import {getStarsWidth} from '../../utils/utils';
 
 type PlaceCardProps = {
   offer: Offer;
+  handleActiveOfferCard: (id: number) => void;
 }
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
 
-  const {offer} = props;
+  const {offer, handleActiveOfferCard} = props;
   const {price, isPremium, title, type, rating, previewImage, isFavorite, id} = offer;
   const starsWidth = getStarsWidth(rating);
 
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={() => handleActiveOfferCard(offer.id)}
+      onMouseLeave={() => handleActiveOfferCard(0)}
+    >
       <Premium isPremium={isPremium} />
 
       <div className="cities__image-wrapper place-card__image-wrapper">
