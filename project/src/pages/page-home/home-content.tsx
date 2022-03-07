@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Offers} from '../../types/offers';
 import ListOffers from '../../components/list-offers/list-offers';
 import Map from '../../components/map/map';
-import {MapLocationType} from '../../utils/const';
+import {PageLocationType} from '../../utils/const';
 
 type HomeContentProps = {
   offers: Offers;
@@ -14,8 +14,7 @@ function HomeContent(props: HomeContentProps): JSX.Element {
   const city = offers[0].city;
   const points = offers.map(({ id, location }) => ({ id, location }));
 
-  const mapLocationType = MapLocationType.HOME;
-
+  const pageLocationType = PageLocationType.HOME;
 
   const [activeOfferCardId, setActiveOfferCardId] = useState(0);
   const handleActiveOfferCard = (id: number) => {
@@ -44,11 +43,15 @@ function HomeContent(props: HomeContentProps): JSX.Element {
             </ul>
           </form>
 
-          <ListOffers offers = {offers as Offers} handleActiveOfferCard={handleActiveOfferCard} />
+          <ListOffers
+            offers = {offers as Offers}
+            handleActiveOfferCard={handleActiveOfferCard}
+            pageLocationType={pageLocationType}
+          />
 
         </section>
         <div className="cities__right-section">
-          <Map city={city} points={points} selectedPoint={activeOfferCardId} mapLocationType={mapLocationType} />
+          <Map city={city} points={points} selectedPoint={activeOfferCardId} pageLocationType={pageLocationType} />
         </div>
       </div>
     </div>

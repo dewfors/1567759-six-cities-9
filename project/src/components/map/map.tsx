@@ -3,7 +3,7 @@ import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/useMap';
 import {City, Points} from '../../types/offers';
-import {IMG_URL, MapLocationType, Pins} from '../../utils/const';
+import {IMG_URL, PageLocationType, Pins} from '../../utils/const';
 
 const defaultCustomIcon = new Icon({
   iconUrl: `${IMG_URL}${Pins.Normal}`,
@@ -21,14 +21,14 @@ type MapProps = {
   city: City;
   points: Points;
   selectedPoint: number | undefined;
-  mapLocationType: string;
+  pageLocationType: string;
 };
 
 function Map(props: MapProps): JSX.Element {
-  const {city, points, selectedPoint, mapLocationType} = props;
+  const {city, points, selectedPoint, pageLocationType} = props;
 
-  const mapClassName = mapLocationType === MapLocationType.HOME ? 'cities__map map' : 'property__map map';
-  const mapHeight = mapLocationType === MapLocationType.HOME ? '100%' : '580px';
+  const mapClassName = pageLocationType === PageLocationType.HOME ? 'cities__map map' : 'property__map map';
+  const mapHeight = pageLocationType === PageLocationType.HOME ? '100%' : '580px';
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
