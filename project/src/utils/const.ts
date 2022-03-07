@@ -21,6 +21,11 @@ export const FormReviewKey = {
   REVIEW: 'review',
 };
 
+export const MapLocationType = {
+  HOME: 'home',
+  ROOM: 'room',
+}
+
 export enum Pins {
   Normal = 'pin.svg',
   Active = 'pin-active.svg',

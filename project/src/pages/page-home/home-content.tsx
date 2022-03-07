@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Offers} from '../../types/offers';
 import ListOffers from '../../components/list-offers/list-offers';
 import Map from '../../components/map/map';
+import {MapLocationType} from '../../utils/const';
 
 type HomeContentProps = {
   offers: Offers;
@@ -12,6 +13,9 @@ function HomeContent(props: HomeContentProps): JSX.Element {
   const offersCount = offers.length;
   const city = offers[0].city;
   const points = offers.map(({ id, location }) => ({ id, location }));
+
+  const mapLocationType = MapLocationType.HOME;
+
 
   const [activeOfferCardId, setActiveOfferCardId] = useState(0);
   const handleActiveOfferCard = (id: number) => {
@@ -44,7 +48,7 @@ function HomeContent(props: HomeContentProps): JSX.Element {
 
         </section>
         <div className="cities__right-section">
-          <Map city={city} points={points} selectedPoint={activeOfferCardId} />
+          <Map city={city} points={points} selectedPoint={activeOfferCardId} mapLocationType={mapLocationType} />
         </div>
       </div>
     </div>

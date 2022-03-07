@@ -1,8 +1,23 @@
+import React from 'react';
 import Header from '../../components/header/header';
 import Reviews from '../../components/reviews/reviews';
-
+import Map from '../../components/map/map';
+import {offers} from '../../mocks/offers';
+import {MapLocationType} from '../../utils/const';
 
 function PageOffer() {
+
+
+  const city = offers[0].city;
+  const points = offers.map(({ id, location }) => ({ id, location }));
+
+  const mapLocationType = MapLocationType.ROOM;
+
+  const activeOfferCardId = 0;
+  //const [activeOfferCardId, setActiveOfferCardId] = useState(0);
+  //const handleActiveOfferCard = (id: number) => {
+  //  setActiveOfferCardId(id);
+  //};
 
   return (
     <div className="page">
@@ -141,6 +156,7 @@ function PageOffer() {
             </div>
           </div>
           <section className="property__map map" />
+          <Map city={city} points={points} selectedPoint={activeOfferCardId} mapLocationType={mapLocationType} />
         </section>
         <div className="container">
           <section className="near-places places">

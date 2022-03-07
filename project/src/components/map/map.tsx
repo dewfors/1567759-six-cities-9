@@ -3,16 +3,16 @@ import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/useMap';
 import {City, Points} from '../../types/offers';
-import {Pins} from '../../utils/const';
+import {IMG_URL, MapLocationType, Pins} from '../../utils/const';
 
 const defaultCustomIcon = new Icon({
-  iconUrl: Pins.Normal,
+  iconUrl: `${IMG_URL}${Pins.Normal}`,
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: Pins.Active,
+  iconUrl: `${IMG_URL}${Pins.Active}`,
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
@@ -21,10 +21,14 @@ type MapProps = {
   city: City;
   points: Points;
   selectedPoint: number | undefined;
+  mapLocationType: string;
 };
 
 function Map(props: MapProps): JSX.Element {
-  const {city, points, selectedPoint} = props;
+  const {city, points, selectedPoint, mapLocationType} = props;
+
+  const mapClassName = mapLocationType === MapLocationType.HOME ? 'cities__map map' : 'property__map map';
+  const mapHeight = mapLocationType === MapLocationType.HOME ? '100%' : '580px';
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -48,7 +52,7 @@ function Map(props: MapProps): JSX.Element {
     }
   }, [map, points, selectedPoint]);
 
-  return <section className={'cities__map map'} style={{height: '100%'}} ref={mapRef} />;
+  return <section className={mapClassName} style={{height: mapHeight}} ref={mapRef} />;
 }
 
 export default Map;
