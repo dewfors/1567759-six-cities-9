@@ -30,3 +30,8 @@ export enum Pins {
   Normal = 'pin.svg',
   Active = 'pin-active.svg',
 }
+
+export const Settings = {
+  CITYES: ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'],
+  DEFAULT_CITY: 'Paris',
+};

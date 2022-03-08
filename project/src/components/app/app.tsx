@@ -6,19 +6,18 @@ import PageOffer from '../../pages/page-offer/page-offer';
 import PageNotFound from '../../pages/page-not-found/page-not-found';
 import PrivateRoute from '../private-route/private-route';
 import PageFavorites from '../../pages/page-favorites/page-favorites';
-import {Offers} from '../../types/offers';
+import {useAppSelector} from '../../hooks';
 
-type AppProps = {
-  offers: Offers;
-}
+function App(): JSX.Element {
 
-function App({offers}: AppProps): JSX.Element {
+  const {city, offers} = useAppSelector((state) => state);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<PageHome offers = {offers} />}
+          element={<PageHome offers = {offers} city={city} />}
         />
         <Route
           path={AppRoute.Login}
