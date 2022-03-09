@@ -3,22 +3,41 @@ import {Offer} from '../../types/offers';
 import Premium from '../premium/premium';
 import AddFavoritesButton from './add-favorites-button';
 import {getStarsWidth} from '../../utils/utils';
+import {PageLocationType} from '../../utils/const';
+
+const getClassNameArticle = (type: string): string => type === PageLocationType.HOME
+  ? 'cities__place-card place-card'
+  : 'near-places__card place-card';
+
+const getClassesNameImage = (type: string): string => type === PageLocationType.HOME
+  ? 'cities__image-wrapper place-card__image-wrapper'
+  : 'near-places__image-wrapper place-card__image-wrapper';
+
 
 type PlaceCardProps = {
   offer: Offer;
+  handleActiveOfferCard: (id: number) => void;
+  pageLocationType: string;
 }
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
 
-  const {offer} = props;
+  const {offer, handleActiveOfferCard, pageLocationType} = props;
   const {price, isPremium, title, type, rating, previewImage, isFavorite, id} = offer;
   const starsWidth = getStarsWidth(rating);
 
+  const classNameArticle = getClassNameArticle(pageLocationType);
+  const classNameImage = getClassesNameImage(pageLocationType);
+
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className={classNameArticle}
+      onMouseEnter={() => handleActiveOfferCard(offer.id)}
+      onMouseLeave={() => handleActiveOfferCard(0)}
+    >
       <Premium isPremium={isPremium} />
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={classNameImage}>
         <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"

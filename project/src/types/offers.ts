@@ -41,3 +41,9 @@ export type CityOffersType = {
   cityName: string;
   listOffers: Offers;
 }
+
+export type Point = Pick<Offer, 'id' | 'location'>;
+
+export type Points = Point[];
+
+export type OffersSortingType = 'popular' | 'priceLowToHigh' | 'priceHighToLow' | 'topRatedFirst';
