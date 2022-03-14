@@ -11,26 +11,11 @@ type sortFunctionType = (a: Offer, b: Offer) => number;
 const getFunctionToCompare = (sortType: OffersSortingType): sortFunctionType => {
   switch (sortType) {
     case SortTypes.PriceLowToHigh:
-      return (a: Offer, b: Offer) => {
-        if (a.price === b.price) {
-          return 0;
-        }
-        return a.price > b.price ? 1 : -1;
-      };
+      return (a: Offer, b: Offer) => a.price - b.price;
     case SortTypes.PriceHighToLow:
-      return (a: Offer, b: Offer) => {
-        if (a.price === b.price) {
-          return 0;
-        }
-        return a.price < b.price ? 1 : -1;
-      };
+      return (a: Offer, b: Offer) => b.price - a.price;
     case SortTypes.TopRatedFirst:
-      return (a: Offer, b: Offer) => {
-        if (a.rating === b.rating) {
-          return 0;
-        }
-        return a.rating > b.rating ? -1 : 1;
-      };
+      return (a: Offer, b: Offer) => b.rating - a.rating;
     default:
       return () => 0;
   }

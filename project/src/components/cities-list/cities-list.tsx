@@ -7,9 +7,9 @@ function CityList(props: { city: string }) {
   const {CITYES} = Settings;
   const dispatch = useAppDispatch();
 
-  function handleClick(cityName: string) {
-    return () => dispatch(setCityName(cityName));
-  }
+  // function handleClick(cityName: string) {
+  //   return () => dispatch(setCityName(cityName));
+  // }
 
   return (
     <section className="locations container">
@@ -17,7 +17,7 @@ function CityList(props: { city: string }) {
         {CITYES.map((cityName) => {
           const className = `locations__item-link tabs__item${cityName === city && ' tabs__item--active'}`;
           return (
-            <li key={cityName} className="locations__item" onClick={handleClick(cityName)}>
+            <li key={cityName} className="locations__item" onClick={() => dispatch(setCityName(cityName))}>
               <a className={className} href="#locations__item">
                 <span>{cityName}</span>
               </a>
