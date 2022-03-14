@@ -29,6 +29,8 @@ function useMap(
       instance.addLayer(layer);
 
       setMap(instance);
+    } else {
+      map?.flyTo([city.location.latitude, city.location.longitude], city.location.zoom);
     }
   }, [mapRef, map, city]);
 
