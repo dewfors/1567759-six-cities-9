@@ -7,10 +7,15 @@ import PageNotFound from '../../pages/page-not-found/page-not-found';
 import PrivateRoute from '../private-route/private-route';
 import PageFavorites from '../../pages/page-favorites/page-favorites';
 import {useAppSelector} from '../../hooks';
+// import {Offers} from '../../types/offers';
+// import {offers} from '../../mocks/offers';
 
 function App(): JSX.Element {
 
   const {city, offers} = useAppSelector((state) => state);
+  // eslint-disable-next-line no-console
+  console.log(offers);
+  // const city = 'Paris';
 
   return (
     <BrowserRouter>
