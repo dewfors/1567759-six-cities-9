@@ -1,11 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandle } from '../services/error-handle';
-// import {dropToken, saveToken} from '../services/token';
+import {saveToken} from '../services/token';
 import { Offers } from '../types/offers';
 // import { User } from '../types/user';
-import {APIRoute} from '../utils/const';
+import { AuthData, UserData } from '../types/user-data';
+import {AppRoute, APIRoute, AuthorizationStatus} from '../utils/const';
 import store, { api } from './index';
-// import { setAuthStatus } from './reducers/auth-reducer';
+import { redirectToRoute } from './reducers/actions';
+import { setAuthStatus } from './reducers/auth-reducer';
 import { setOffers } from './reducers/offers-reducer';
 // import { setUser } from './reducers/user-reducer';
 
@@ -23,40 +25,43 @@ export const fetchOfferAction = createAsyncThunk(
   },
 );
 
-// const checkAuthAction = createAsyncThunk(
-//   'user/checkAuth',
-//   async () => {
-//     try {
-//       await api.get(APIRoute.Login);
-//       store.dispatch(setAuthStatus(AuthorizationStatus.Auth));
-//     } catch(error) {
-//       store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
-//     }
-//   },
-// );
-//
-// const loginAction = createAsyncThunk(
-//   'user/login',
-//   async () => {
-//     try {
-//       const {data} = await api.post<User>(APIRoute.Login);
-//       saveToken(data.token);
-//       store.dispatch(setUser(data));
-//     } finally {
-//
-//     }
-//   },
-// );
+export const checkAuthAction = createAsyncThunk(
+  'user/checkAuth',
+  async () => {
+    try {
+      await api.get(APIRoute.Login);
+      store.dispatch(setAuthStatus(AuthorizationStatus.Auth));
+    } catch(error) {
+      errorHandle(error);
+      store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+    }
+  },
+);
 
-// const logoutAction = createAsyncThunk(
+export const loginAction = createAsyncThunk(
+  'user/login',
+  async ({login: email, password}: AuthData) => {
+    try {
+      const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
+      saveToken(token);
+      store.dispatch(setAuthStatus(AuthorizationStatus.Auth));
+      store.dispatch(redirectToRoute(AppRoute.Root));
+    } catch (error) {
+      errorHandle(error);
+      store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+    }
+  },
+);
+
+// export const logoutAction = createAsyncThunk(
 //   'user/logout',
 //   async () => {
 //     try {
 //       await api.delete(APIRoute.Logout);
 //       dropToken();
 //       store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
-//     } finally {
-//
+//     } catch (error) {
+//       errorHandle(error);
 //     }
 //   },
 // );

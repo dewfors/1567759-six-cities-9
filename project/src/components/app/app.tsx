@@ -1,5 +1,5 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../utils/const';
+import {Route, Routes} from 'react-router-dom';
+import {AppRoute} from '../../utils/const';
 import PageHome from '../../pages/page-home/page-home';
 import PageLogin from '../../pages/page-login/page-login';
 import PageOffer from '../../pages/page-offer/page-offer';
@@ -8,8 +8,8 @@ import PrivateRoute from '../private-route/private-route';
 import PageFavorites from '../../pages/page-favorites/page-favorites';
 import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
-// import {Offers} from '../../types/offers';
-// import {offers} from '../../mocks/offers';
+import HistoryRouter from '../history-router/history-router';
+import browserHistory from '../../services/browser-history';
 
 function App(): JSX.Element {
 
@@ -25,7 +25,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Root}
@@ -38,9 +38,7 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateRoute>
               <PageFavorites offers = {offers} />
             </PrivateRoute>
           }
@@ -54,7 +52,7 @@ function App(): JSX.Element {
           element={<PageNotFound />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
 
   );
 }
