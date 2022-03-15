@@ -14,8 +14,6 @@ type PageHomeProps = {
 function PageHome(props: PageHomeProps): JSX.Element {
   const {offers, city} = props;
   const offersByCity = offers.filter((item) => item.city.name === city);
-  // eslint-disable-next-line no-console
-  console.log(offersByCity);
 
   const isOffersEmpty = offersByCity.length === 0;
   const pageMainIndexEmptyClassName = isOffersEmpty ? 'page__main--index-empty' : '';

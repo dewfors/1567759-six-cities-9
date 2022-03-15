@@ -10,13 +10,13 @@ import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../loading-screen/loading-screen';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../services/browser-history';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App(): JSX.Element {
 
   const {city, stateOffers} = useAppSelector((state) => state);
   const {isDataLoaded, offers} = stateOffers;
-  // eslint-disable-next-line no-console
-  console.log(offers);
 
   if (!isDataLoaded) {
     return (
@@ -26,6 +26,7 @@ function App(): JSX.Element {
 
   return (
     <HistoryRouter history={browserHistory}>
+      <ToastContainer position="top-center" />
       <Routes>
         <Route
           path={AppRoute.Root}
