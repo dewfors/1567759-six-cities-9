@@ -14,7 +14,7 @@ function CityList(props: { city: string }) {
           const className = `locations__item-link tabs__item${cityName === city && ' tabs__item--active'}`;
           return (
             <li key={cityName} className="locations__item" onClick={() => dispatch(setCityName(cityName))}>
-              <a className={className} href={'/'}>
+              <a className={className} href="#locations__item">
                 <span>{cityName}</span>
               </a>
             </li>
