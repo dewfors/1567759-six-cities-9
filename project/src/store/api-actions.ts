@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { errorHandle } from '../services/error-handle';
 // import {dropToken, saveToken} from '../services/token';
 import { Offers } from '../types/offers';
 // import { User } from '../types/user';
@@ -12,13 +13,13 @@ import { setOffers } from './reducers/offers-reducer';
 export const fetchOfferAction = createAsyncThunk(
   'data/fetchOffers',
   async () => {
-    // try {
-    const {data} = await api.get<Offers>(APIRoute.Offers);
-    // console.log(data);
-    store.dispatch(setOffers(data));
-    // } finally {
-    //
-    // }
+    try {
+      const {data} = await api.get<Offers>(APIRoute.Offers);
+      // console.log(data);
+      store.dispatch(setOffers(data));
+    } catch (error) {
+      errorHandle(error);
+    }
   },
 );
 
