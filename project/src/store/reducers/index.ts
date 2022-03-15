@@ -5,7 +5,7 @@ import sortReducer from './sort-reducer';
 
 const reducer = combineReducers({
   city: cityReducer.reducer,
-  offers: offersReducer.reducer,
+  stateOffers: offersReducer.reducer,
   sort: sortReducer.reducer,
 });
 

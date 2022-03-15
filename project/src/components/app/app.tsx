@@ -7,15 +7,22 @@ import PageNotFound from '../../pages/page-not-found/page-not-found';
 import PrivateRoute from '../private-route/private-route';
 import PageFavorites from '../../pages/page-favorites/page-favorites';
 import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../loading-screen/loading-screen';
 // import {Offers} from '../../types/offers';
 // import {offers} from '../../mocks/offers';
 
 function App(): JSX.Element {
 
-  const {city, offers} = useAppSelector((state) => state);
+  const {city, stateOffers} = useAppSelector((state) => state);
+  const {isDataLoaded, offers} = stateOffers;
   // eslint-disable-next-line no-console
   console.log(offers);
-  // const city = 'Paris';
+
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <BrowserRouter>
