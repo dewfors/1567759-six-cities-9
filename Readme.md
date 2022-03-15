@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Заур Малахов](https://up.htmlacademy.ru/react/9/user/1567759).
-* Наставник: [Виктор Кан](https://htmlacademy.ru/profile/viktorkan).
+* Наставник: [Максим Дробышев](https://htmlacademy.ru/profile/id1962527).
 
 ---
 

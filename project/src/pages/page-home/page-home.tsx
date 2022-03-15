@@ -14,6 +14,7 @@ type PageHomeProps = {
 function PageHome(props: PageHomeProps): JSX.Element {
   const {offers, city} = props;
   const offersByCity = offers.filter((item) => item.city.name === city);
+
   const isOffersEmpty = offersByCity.length === 0;
   const pageMainIndexEmptyClassName = isOffersEmpty ? 'page__main--index-empty' : '';
 
@@ -26,7 +27,7 @@ function PageHome(props: PageHomeProps): JSX.Element {
         </div>
         {isOffersEmpty
           ? <ListOffersEmpty />
-          :<HomeContent offers = {offers}/>}
+          :<HomeContent offers = {offersByCity}/>}
       </Main>
     </Page>
   );

@@ -1,13 +1,28 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Offers} from '../../types/offers';
-import {offers} from '../../mocks/offers';
+// import {offers} from '../../mocks/offers';
+
+// type initialStateType = Offers | [];
+//
+// const initialState: initialStateType = [];
+
+type initialStateOffersType = {
+  isDataLoaded: boolean,
+  offers: Offers | [],
+}
+
+const initialState: initialStateOffersType = {
+  isDataLoaded: false,
+  offers: [],
+};
 
 const offersReducer = createSlice({
-  name: 'offers',
-  initialState: offers,
+  name: 'stateOffers',
+  initialState,
   reducers: {
     setOffers: (state, action:PayloadAction<Offers>) => {
-      state = action.payload;
+      state.offers = action.payload;
+      state.isDataLoaded = true;
       return state;
     },
   },

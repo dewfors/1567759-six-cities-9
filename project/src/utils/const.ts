@@ -4,12 +4,26 @@ export const MAX_PERSENT = 100;
 export const MAX_STARS = 5;
 
 export const IMG_URL = 'img/';
+export const TIMEOUT_SHOW_ERROR = 2000;
 
 export enum AppRoute {
   Root = '/',
   Login = '/login',
   Favorites = '/favorites',
   Room = '/offer/:id',
+}
+
+export enum APIRoute {
+  Offers = '/hotels',
+  Comments = '/comments',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+export enum HTTP_CODE {
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
+  NOT_FOUND = 404,
 }
 
 export enum AuthorizationStatus {
