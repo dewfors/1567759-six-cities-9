@@ -10,6 +10,8 @@ import { setAuthStatus } from './reducers/auth-reducer';
 import { loadOffersNearby } from './reducers/offers-nearby-reducer';
 import { setOffers } from './reducers/offers-reducer';
 import { setUser } from './reducers/user-reducer';
+import {Reviews} from '../types/review';
+import { loadComments, resetComments } from './reducers/reviews-reducer';
 
 
 export const fetchOfferAction = createAsyncThunk(
@@ -30,6 +32,19 @@ export const fetchOfferNearbyAction =  createAsyncThunk(
     try {
       const {data} = await api.get<Offers>(`${APIRoute.Offers}/${currentId}/nearby`);
       store.dispatch(loadOffersNearby(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchCommentsAction = createAsyncThunk(
+  'data/fetchComments',
+  async (currentId: number) => {
+    try {
+      const {data} = await api.get<Reviews>(`${APIRoute.Comments}/${currentId}`);
+      store.dispatch(resetComments());
+      store.dispatch(loadComments(data));
     } catch (error) {
       errorHandle(error);
     }

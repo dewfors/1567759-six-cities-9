@@ -11,7 +11,7 @@ import PageNotFound from '../page-not-found/page-not-found';
 import Gallery from './gallery';
 import { getStarsWidth } from '../../utils/utils';
 import Host from './host';
-import { fetchOfferNearbyAction } from '../../store/api-actions';
+import {fetchCommentsAction, fetchOfferNearbyAction} from '../../store/api-actions';
 import store from '../../store';
 
 function PageOffer() {
@@ -30,8 +30,17 @@ function PageOffer() {
   useEffect(() => {
     store.dispatch(fetchOfferNearbyAction(paramsId));
   }, [paramsId]);
+  useEffect(() => {
+    store.dispatch(fetchCommentsAction(paramsId));
+  }, [paramsId]);
 
   const {stateOffersNearby} = useAppSelector((state) => state);
+  const {stateComments} = useAppSelector((state) => state);
+
+  const {comments} = stateComments;
+  // eslint-disable-next-line no-console
+  console.log(comments);
+
   const {offersNearby} = stateOffersNearby;
   const offersToMap = [...offersNearby, currentOffer];
 
@@ -115,9 +124,7 @@ function PageOffer() {
               {host && (
                 <Host host={host} description={description} />
               )}
-              <section className="property__reviews reviews">
-                <Reviews />
-              </section>
+              <Reviews reviews={comments} />
             </div>
           </div>
 
