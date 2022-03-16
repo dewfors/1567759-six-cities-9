@@ -38,8 +38,6 @@ function PageOffer() {
   const {stateComments} = useAppSelector((state) => state);
 
   const {comments} = stateComments;
-  // eslint-disable-next-line no-console
-  console.log(comments);
 
   const {offersNearby} = stateOffersNearby;
   const offersToMap = [...offersNearby, currentOffer];
@@ -124,7 +122,7 @@ function PageOffer() {
               {host && (
                 <Host host={host} description={description} />
               )}
-              <Reviews reviews={comments} />
+              <Reviews reviews={comments} hotelId={Number(paramsId)} />
             </div>
           </div>
 

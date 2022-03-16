@@ -10,7 +10,7 @@ import { setAuthStatus } from './reducers/auth-reducer';
 import { loadOffersNearby } from './reducers/offers-nearby-reducer';
 import { setOffers } from './reducers/offers-reducer';
 import { setUser } from './reducers/user-reducer';
-import {Reviews} from '../types/review';
+import {NewReview, Reviews} from '../types/review';
 import { loadComments, resetComments } from './reducers/reviews-reducer';
 
 
@@ -45,6 +45,18 @@ export const fetchCommentsAction = createAsyncThunk(
       const {data} = await api.get<Reviews>(`${APIRoute.Comments}/${currentId}`);
       store.dispatch(resetComments());
       store.dispatch(loadComments(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const postCommentAction = createAsyncThunk(
+  'user/postComment',
+  async (newReview: NewReview) => {
+    try {
+      await api.post<NewReview>(`${APIRoute.Comments}/${newReview.id}`, newReview.review);
+      store.dispatch(fetchCommentsAction(newReview.id));
     } catch (error) {
       errorHandle(error);
     }
