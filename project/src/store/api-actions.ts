@@ -7,6 +7,7 @@ import {AppRoute, APIRoute, AuthorizationStatus} from '../utils/const';
 import store, { api } from './index';
 import { redirectToRoute } from './reducers/actions';
 import { setAuthStatus } from './reducers/auth-reducer';
+import { loadOffersNearby } from './reducers/offers-nearby-reducer';
 import { setOffers } from './reducers/offers-reducer';
 import { setUser } from './reducers/user-reducer';
 
@@ -17,6 +18,18 @@ export const fetchOfferAction = createAsyncThunk(
     try {
       const {data} = await api.get<Offers>(APIRoute.Offers);
       store.dispatch(setOffers(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchOfferNearbyAction =  createAsyncThunk(
+  'data/fetchOffersNearby',
+  async (currentId: number) => {
+    try {
+      const {data} = await api.get<Offers>(`${APIRoute.Offers}/${currentId}/nearby`);
+      store.dispatch(loadOffersNearby(data));
     } catch (error) {
       errorHandle(error);
     }
@@ -75,3 +88,5 @@ export const logoutAction = createAsyncThunk(
     }
   },
 );
+
+
