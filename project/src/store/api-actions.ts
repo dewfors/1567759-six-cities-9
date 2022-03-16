@@ -1,13 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandle } from '../services/error-handle';
-import {saveToken} from '../services/token';
+import {dropToken, saveToken} from '../services/token';
 import { Offers } from '../types/offers';
 import { AuthData, UserData } from '../types/user-data';
 import {AppRoute, APIRoute, AuthorizationStatus} from '../utils/const';
 import store, { api } from './index';
 import { redirectToRoute } from './reducers/actions';
 import { setAuthStatus } from './reducers/auth-reducer';
+import { loadOffersNearby } from './reducers/offers-nearby-reducer';
 import { setOffers } from './reducers/offers-reducer';
+import { setUser } from './reducers/user-reducer';
+import {NewReview, Reviews} from '../types/review';
+import { loadComments, resetComments } from './reducers/reviews-reducer';
 
 
 export const fetchOfferAction = createAsyncThunk(
@@ -16,6 +20,43 @@ export const fetchOfferAction = createAsyncThunk(
     try {
       const {data} = await api.get<Offers>(APIRoute.Offers);
       store.dispatch(setOffers(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchOfferNearbyAction =  createAsyncThunk(
+  'data/fetchOffersNearby',
+  async (currentId: number) => {
+    try {
+      const {data} = await api.get<Offers>(`${APIRoute.Offers}/${currentId}/nearby`);
+      store.dispatch(loadOffersNearby(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchCommentsAction = createAsyncThunk(
+  'data/fetchComments',
+  async (currentId: number) => {
+    try {
+      const {data} = await api.get<Reviews>(`${APIRoute.Comments}/${currentId}`);
+      store.dispatch(resetComments());
+      store.dispatch(loadComments(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const postCommentAction = createAsyncThunk(
+  'user/postComment',
+  async (newReview: NewReview) => {
+    try {
+      await api.post<NewReview>(`${APIRoute.Comments}/${newReview.id}`, newReview.review);
+      store.dispatch(fetchCommentsAction(newReview.id));
     } catch (error) {
       errorHandle(error);
     }
@@ -49,3 +90,30 @@ export const loginAction = createAsyncThunk(
     }
   },
 );
+
+export const getUserAction = createAsyncThunk(
+  'user/login',
+  async () => {
+    try {
+      const {data} = await api.get<UserData>(APIRoute.Login);
+      store.dispatch(setUser(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const logoutAction = createAsyncThunk(
+  'user/logout',
+  async () => {
+    try {
+      await api.delete(APIRoute.Logout);
+      dropToken();
+      store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+
