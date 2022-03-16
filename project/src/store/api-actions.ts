@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandle } from '../services/error-handle';
-import {saveToken} from '../services/token';
+import {dropToken, saveToken} from '../services/token';
 import { Offers } from '../types/offers';
 import { AuthData, UserData } from '../types/user-data';
 import {AppRoute, APIRoute, AuthorizationStatus} from '../utils/const';
@@ -8,6 +8,7 @@ import store, { api } from './index';
 import { redirectToRoute } from './reducers/actions';
 import { setAuthStatus } from './reducers/auth-reducer';
 import { setOffers } from './reducers/offers-reducer';
+import { setUser } from './reducers/user-reducer';
 
 
 export const fetchOfferAction = createAsyncThunk(
@@ -46,6 +47,31 @@ export const loginAction = createAsyncThunk(
     } catch (error) {
       errorHandle(error);
       store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+    }
+  },
+);
+
+export const getUserAction = createAsyncThunk(
+  'user/login',
+  async () => {
+    try {
+      const {data} = await api.get<UserData>(APIRoute.Login);
+      store.dispatch(setUser(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const logoutAction = createAsyncThunk(
+  'user/logout',
+  async () => {
+    try {
+      await api.delete(APIRoute.Logout);
+      dropToken();
+      store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+    } catch (error) {
+      errorHandle(error);
     }
   },
 );
