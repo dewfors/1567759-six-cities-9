@@ -23,7 +23,7 @@ function ListOffers(props: ListOffersProps): JSX.Element {
       {offers.map((offer, i) => (
         <PlaceCard
           key={offer.id}
-          offer={offer}
+          offerId={offer.id}
           handleActiveOfferCard={handleActiveOfferCard}
           pageLocationType={pageLocationType}
         />

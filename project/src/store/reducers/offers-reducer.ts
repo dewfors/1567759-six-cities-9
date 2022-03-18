@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Offers} from '../../types/offers';
+import {Offer, Offers} from '../../types/offers';
 
 type initialStateOffersType = {
   isDataLoaded: boolean,
@@ -20,9 +20,18 @@ const offersReducer = createSlice({
       state.isDataLoaded = true;
       return state;
     },
+    changeFavoriteStatus: (state, action:PayloadAction<Offer>) => {
+      state.offers.forEach((item, i, arr) => {
+        if (item.id === action.payload.id) {
+          item.isFavorite = action.payload.isFavorite;
+        }
+      });
+
+      return state;
+    },
   },
 });
 
-export const { setOffers } = offersReducer.actions;
+export const { setOffers, changeFavoriteStatus } = offersReducer.actions;
 
 export default offersReducer;

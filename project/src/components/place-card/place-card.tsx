@@ -4,6 +4,7 @@ import Premium from '../premium/premium';
 import AddFavoritesButton from './add-favorites-button';
 import {getStarsWidth} from '../../utils/utils';
 import {PageLocationType} from '../../utils/const';
+import {useAppSelector} from '../../hooks';
 
 const getClassNameArticle = (type: string): string => type === PageLocationType.HOME
   ? 'cities__place-card place-card'
@@ -15,14 +16,20 @@ const getClassesNameImage = (type: string): string => type === PageLocationType.
 
 
 type PlaceCardProps = {
-  offer: Offer;
+  offerId: number;
   handleActiveOfferCard: (id: number) => void;
   pageLocationType: string;
 }
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
 
-  const {offer, handleActiveOfferCard, pageLocationType} = props;
+  const {stateOffers} = useAppSelector((state) => state);
+  const {offers} = stateOffers;
+
+
+  const {offerId, handleActiveOfferCard, pageLocationType} = props;
+
+  const offer: Offer = offers.filter((item) => item.id === offerId)[0];
   const {price, isPremium, title, type, rating, previewImage, isFavorite, id} = offer;
   const starsWidth = getStarsWidth(rating);
 

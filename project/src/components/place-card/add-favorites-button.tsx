@@ -1,5 +1,8 @@
 import {useLocation, useParams} from 'react-router-dom';
-import {AppRoute} from '../../utils/const';
+import {AppRoute, AuthorizationStatus} from '../../utils/const';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import browserHistory from '../../services/browser-history';
+import {postFavoriteStatusAction} from '../../store/api-actions';
 
 type AddFavoritesButtonProps = {
   id: number;
@@ -9,6 +12,10 @@ type AddFavoritesButtonProps = {
 function AddFavoritesButton(props: AddFavoritesButtonProps): JSX.Element {
   const {id, isFavorite} = props;
 
+  const dispatch = useAppDispatch();
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isAuth = authorizationStatus.status === AuthorizationStatus.Auth;
   const params = useParams();
   const location = useLocation();
   const path: string = location.pathname;
@@ -21,10 +28,19 @@ function AddFavoritesButton(props: AddFavoritesButtonProps): JSX.Element {
     : 'place-card__bookmark-button button';
   const addToFavoritesActiveClassName = isFavorite ? 'place-card__bookmark-button--active' : '';
 
+
+  const handleAddToFavorites = () => {
+    if (!isAuth) {
+      browserHistory.push(AppRoute.Login);
+    }
+    dispatch(postFavoriteStatusAction({id, status: Number(!isFavorite)}));
+  };
+
   return (
     <button
       className={`${addToFavoritesClassName} ${addToFavoritesActiveClassName}`}
       type="button"
+      onClick={handleAddToFavorites}
     >
       <svg className="place-card__bookmark-icon" width={width} height={height}>
         <use xlinkHref="#icon-bookmark"> </use>
