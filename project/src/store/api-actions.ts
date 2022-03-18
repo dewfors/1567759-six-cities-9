@@ -13,6 +13,7 @@ import { setUser } from './reducers/user-reducer';
 import {NewReview, Reviews} from '../types/review';
 import { loadComments, resetComments } from './reducers/reviews-reducer';
 import { NewStatus } from '../types/favorite-status';
+import { loadOffersFavorites } from './reducers/offers-favorites';
 
 
 export const fetchOfferAction = createAsyncThunk(
@@ -58,6 +59,18 @@ export const postCommentAction = createAsyncThunk(
     try {
       await api.post<NewReview>(`${APIRoute.Comments}/${newReview.id}`, newReview.review);
       store.dispatch(fetchCommentsAction(newReview.id));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchFavoriteAction = createAsyncThunk(
+  'data/fetchFavoritesOffers',
+  async () => {
+    try {
+      const {data} = await api.get<Offer[]>(AppRoute.Favorite);
+      store.dispatch(loadOffersFavorites(data));
     } catch (error) {
       errorHandle(error);
     }

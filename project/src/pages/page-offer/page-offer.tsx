@@ -2,17 +2,18 @@ import React, {useEffect, useState} from 'react';
 import Header from '../../components/header/header';
 import Reviews from '../../components/reviews/reviews';
 import Map from '../../components/map/map';
-import {PageLocationType} from '../../utils/const';
+import {AppRoute, PageLocationType} from '../../utils/const';
 import {Offers} from '../../types/offers';
 import ListOffers from '../../components/list-offers/list-offers';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 import PageNotFound from '../page-not-found/page-not-found';
 import Gallery from './gallery';
-import { getStarsWidth } from '../../utils/utils';
+import {getStarsWidth} from '../../utils/utils';
 import Host from './host';
 import {fetchCommentsAction, fetchOfferNearbyAction} from '../../store/api-actions';
 import store from '../../store';
+import AddFavoritesButton from '../../components/place-card/add-favorites-button';
 
 function PageOffer() {
 
@@ -24,7 +25,8 @@ function PageOffer() {
   const currentOffer = offers.filter((offer) => offer.id===paramsId)[0];
 
   const {images, isPremium, title, rating, type, bedrooms, maxAdults,
-    price, goods, host, description, city} = currentOffer;
+    price, goods, host, description, city, isFavorite} = currentOffer;
+
   const imagesToRender = images.slice(0, 6);
 
   useEffect(() => {
@@ -77,12 +79,14 @@ function PageOffer() {
               )}
               <div className="property__name-wrapper">
                 <h1 className="property__name">{title}</h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark" />
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <AddFavoritesButton id={paramsId} isFavorite={isFavorite} place={AppRoute.Room}/>
+
+                {/*<button className="property__bookmark-button button" type="button">*/}
+                {/*  <svg className="property__bookmark-icon" width="31" height="33">*/}
+                {/*    <use xlinkHref="#icon-bookmark" />*/}
+                {/*  </svg>*/}
+                {/*  <span className="visually-hidden">To bookmarks</span>*/}
+                {/*</button>*/}
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">

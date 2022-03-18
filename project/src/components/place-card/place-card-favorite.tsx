@@ -2,6 +2,7 @@ import {Offer} from '../../types/offers';
 import {getStarsWidth} from '../../utils/utils';
 import {Link} from 'react-router-dom';
 import AddFavoritesButton from './add-favorites-button';
+import {AppRoute} from '../../utils/const';
 
 type PlaceCardFavoriteProps = {
   offer: Offer;
@@ -25,7 +26,7 @@ function PlaceCardFavorite(props: PlaceCardFavoriteProps): JSX.Element {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <AddFavoritesButton id={id} isFavorite={isFavorite} />
+          <AddFavoritesButton id={id} isFavorite={isFavorite} place={AppRoute.Favorite} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

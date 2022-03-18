@@ -3,7 +3,7 @@ import {Offer} from '../../types/offers';
 import Premium from '../premium/premium';
 import AddFavoritesButton from './add-favorites-button';
 import {getStarsWidth} from '../../utils/utils';
-import {PageLocationType} from '../../utils/const';
+import {AppRoute, PageLocationType} from '../../utils/const';
 import {useAppSelector} from '../../hooks';
 
 const getClassNameArticle = (type: string): string => type === PageLocationType.HOME
@@ -62,7 +62,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
 
-          <AddFavoritesButton id={id} isFavorite={isFavorite} />
+          <AddFavoritesButton id={id} isFavorite={isFavorite} place={AppRoute.Root}/>
 
         </div>
         <div className="place-card__rating rating">
