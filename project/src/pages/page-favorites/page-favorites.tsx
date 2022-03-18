@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '../../components/header/header';
-import {Offers} from '../../types/offers';
 import ListOffersFavorite from '../../components/list-offers/list-offers-favorite';
+import {useAppSelector} from '../../hooks';
 
-type PageFavoritesProps = {
-  offers: Offers;
-}
 
-function PageFavorites(props: PageFavoritesProps): JSX.Element {
+function PageFavorites(): JSX.Element {
 
-  const {offers} = props;
+  const {stateOffers} = useAppSelector((state) => state);
+  const {offers} = stateOffers;
+
+
   const offersFavorites = offers.filter((offer) => offer.isFavorite);
 
   const content = <ListOffersFavorite offers={offersFavorites} />;
