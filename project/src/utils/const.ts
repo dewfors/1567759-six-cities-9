@@ -9,7 +9,7 @@ export const TIMEOUT_SHOW_ERROR = 2000;
 export enum AppRoute {
   Root = '/',
   Login = '/login',
-  Favorites = '/favorites',
+  Favorite = '/favorite',
   Room = '/offer/:id',
 }
 

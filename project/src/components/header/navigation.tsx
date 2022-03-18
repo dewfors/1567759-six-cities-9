@@ -37,7 +37,7 @@ function Navigation(): JSX.Element {
       <ul className="header__nav-list">
         <li className="header__nav-item user">
           <Link
-            to={AppRoute.Favorites}
+            to={AppRoute.Favorite}
             title='/favorites'
             className="header__nav-link header__nav-link--profile"
           >

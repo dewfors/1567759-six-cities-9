@@ -30,14 +30,14 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<PageHome offers = {offers} city={city} />}
+          element={<PageHome city={city} />}
         />
         <Route
           path={AppRoute.Login}
           element={<PageLogin />}
         />
         <Route
-          path={AppRoute.Favorites}
+          path={AppRoute.Favorite}
           element={
             <PrivateRoute>
               <PageFavorites offers = {offers} />
