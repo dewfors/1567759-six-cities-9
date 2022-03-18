@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import {Offers} from '../../types/offers';
 import PlaceCard from '../place-card/place-card';
 import {PageLocationType} from '../../utils/const';
@@ -31,4 +32,8 @@ function ListOffers(props: ListOffersProps): JSX.Element {
   );
 }
 
-export default ListOffers;
+export default memo(ListOffers,(prevProps, nextProps) => {
+  const isOffersEqual = (prevOffers: Offers, nextOffers: Offers) => prevOffers.every(
+    (item, index) => item.id === nextOffers[index].id);
+  return isOffersEqual(prevProps.offers, nextProps.offers);
+});
