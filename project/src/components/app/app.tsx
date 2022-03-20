@@ -15,8 +15,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App(): JSX.Element {
 
-  const {city, stateOffers} = useAppSelector((state) => state);
-  const {isDataLoaded, offers} = stateOffers;
+  const {stateOffers} = useAppSelector((state) => state);
+  const {isDataLoaded} = stateOffers;
 
   if (!isDataLoaded) {
     return (
@@ -30,17 +30,17 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<PageHome offers = {offers} city={city} />}
+          element={<PageHome />}
         />
         <Route
           path={AppRoute.Login}
           element={<PageLogin />}
         />
         <Route
-          path={AppRoute.Favorites}
+          path={AppRoute.Favorite}
           element={
             <PrivateRoute>
-              <PageFavorites offers = {offers} />
+              <PageFavorites />
             </PrivateRoute>
           }
         />

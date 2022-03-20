@@ -2,17 +2,15 @@ import React from 'react';
 import Page from '../../components/page/page';
 import Main from '../../components/main/main';
 import HomeContent from './home-content';
-import {Offers} from '../../types/offers';
 import CityList from '../../components/cities-list/cities-list';
 import ListOffersEmpty from '../../components/list-offers/list-offers-empty';
+import {useAppSelector} from '../../hooks';
 
-type PageHomeProps = {
-  offers: Offers;
-  city: string;
-}
 
-function PageHome(props: PageHomeProps): JSX.Element {
-  const {offers, city} = props;
+function PageHome(): JSX.Element {
+  const {city, stateOffers} = useAppSelector((state) => state);
+  const {offers} = stateOffers;
+
   const offersByCity = offers.filter((item) => item.city.name === city);
 
   const isOffersEmpty = offersByCity.length === 0;

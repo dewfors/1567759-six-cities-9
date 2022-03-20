@@ -1,17 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandle } from '../services/error-handle';
 import {dropToken, saveToken} from '../services/token';
-import { Offers } from '../types/offers';
+import {Offer, Offers} from '../types/offers';
 import { AuthData, UserData } from '../types/user-data';
 import {AppRoute, APIRoute, AuthorizationStatus} from '../utils/const';
 import store, { api } from './index';
 import { redirectToRoute } from './reducers/actions';
 import { setAuthStatus } from './reducers/auth-reducer';
 import { loadOffersNearby } from './reducers/offers-nearby-reducer';
-import { setOffers } from './reducers/offers-reducer';
+import { changeFavoriteStatus, setOffers } from './reducers/offers-reducer';
 import { setUser } from './reducers/user-reducer';
 import {NewReview, Reviews} from '../types/review';
 import { loadComments, resetComments } from './reducers/reviews-reducer';
+import { NewStatus } from '../types/favorite-status';
+import { loadOffersFavorites } from './reducers/offers-favorites';
 
 
 export const fetchOfferAction = createAsyncThunk(
@@ -62,6 +64,33 @@ export const postCommentAction = createAsyncThunk(
     }
   },
 );
+
+export const fetchFavoriteAction = createAsyncThunk(
+  'data/fetchFavoritesOffers',
+  async () => {
+    try {
+      const {data} = await api.get<Offer[]>(AppRoute.Favorite);
+      store.dispatch(loadOffersFavorites(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const postFavoriteStatusAction = createAsyncThunk(
+  'user/postFavoriteStatus',
+  async (newStatus: NewStatus) => {
+    api.post<Offer>(`${AppRoute.Favorite}/${newStatus.id}/${newStatus.status}`)
+      .then(({data}) => {
+        store.dispatch(changeFavoriteStatus(data));
+      })
+      .catch((error) => {
+        errorHandle(error);
+      });
+
+  },
+);
+
 
 export const checkAuthAction = createAsyncThunk(
   'user/checkAuth',

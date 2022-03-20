@@ -1,16 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from '../../components/header/header';
-import {Offers} from '../../types/offers';
 import ListOffersFavorite from '../../components/list-offers/list-offers-favorite';
+import {useAppSelector} from '../../hooks';
+import store from '../../store';
+import {fetchFavoriteAction} from '../../store/api-actions';
 
-type PageFavoritesProps = {
-  offers: Offers;
-}
 
-function PageFavorites(props: PageFavoritesProps): JSX.Element {
+function PageFavorites(): JSX.Element {
 
-  const {offers} = props;
-  const offersFavorites = offers.filter((offer) => offer.isFavorite);
+  useEffect(() => {
+    store.dispatch(fetchFavoriteAction());
+  });
+
+  const {stateOffersFavorites} = useAppSelector((state) => state);
+
+  const {offersFavorites} = stateOffersFavorites;
 
   const content = <ListOffersFavorite offers={offersFavorites} />;
 

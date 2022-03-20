@@ -1,6 +1,9 @@
+import {useAppSelector} from '../../hooks';
 
 
 function ListOffersEmpty(): JSX.Element {
+  const {city} = useAppSelector((state) => state);
+
   return (
     <div className="cities">
       <div className="cities__places-container cities__places-container--empty container">
@@ -8,7 +11,7 @@ function ListOffersEmpty(): JSX.Element {
           <div className="cities__status-wrapper tabs__content">
             <b className="cities__status">No places to stay available</b>
             <p className="cities__status-description">We could not find any property available at the moment in
-              Dusseldorf
+              {city}
             </p>
           </div>
         </section>
