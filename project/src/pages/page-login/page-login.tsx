@@ -3,9 +3,16 @@ import Header from '../../components/header/header';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/user-data';
+import {getRandomCity} from '../../utils/utils';
+import {setCityName} from '../../store/reducers/city-reducer';
+import {Link} from 'react-router-dom';
+import browserHistory from '../../services/browser-history';
+import {AppRoute} from '../../utils/const';
 
 
 function PageLogin(): JSX.Element {
+
+  const randomCity = getRandomCity();
 
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -62,9 +69,17 @@ function PageLogin(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href={'/'}>
-                <span>Amsterdam</span>
-              </a>
+              <Link
+                className="locations__item-link"
+                to={`/#${randomCity}`}
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  dispatch(setCityName(randomCity));
+                  browserHistory.push(AppRoute.Root);
+                }}
+              >
+                <span>{randomCity}</span>
+              </Link>
             </div>
           </section>
         </div>

@@ -80,13 +80,6 @@ function PageOffer() {
               <div className="property__name-wrapper">
                 <h1 className="property__name">{title}</h1>
                 <AddFavoritesButton id={paramsId} isFavorite={isFavorite} place={AppRoute.Room}/>
-
-                {/*<button className="property__bookmark-button button" type="button">*/}
-                {/*  <svg className="property__bookmark-icon" width="31" height="33">*/}
-                {/*    <use xlinkHref="#icon-bookmark" />*/}
-                {/*  </svg>*/}
-                {/*  <span className="visually-hidden">To bookmarks</span>*/}
-                {/*</button>*/}
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
