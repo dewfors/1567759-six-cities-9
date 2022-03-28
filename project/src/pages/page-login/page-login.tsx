@@ -1,23 +1,33 @@
-import React, {FormEvent, useRef } from 'react';
+import React, {FormEvent, useEffect, useRef } from 'react';
 import Header from '../../components/header/header';
-import { useAppDispatch } from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/user-data';
 import {getRandomCity} from '../../utils/utils';
 import {setCityName} from '../../store/reducers/city-reducer';
 import {Link} from 'react-router-dom';
 import browserHistory from '../../services/browser-history';
-import {AppRoute} from '../../utils/const';
+import {AppRoute, AuthorizationStatus} from '../../utils/const';
+import { redirectToRoute } from '../../store/reducers/actions';
 
 
 function PageLogin(): JSX.Element {
+
+  const dispatch = useAppDispatch();
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  useEffect(() => {
+    if (authorizationStatus.status === AuthorizationStatus.Auth) {
+      dispatch(redirectToRoute(AppRoute.Root));
+    }
+  }, [dispatch, authorizationStatus]);
+
 
   const randomCity = getRandomCity();
 
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
-  const dispatch = useAppDispatch();
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -80,6 +90,7 @@ function PageLogin(): JSX.Element {
               >
                 <span>{randomCity}</span>
               </Link>
+
             </div>
           </section>
         </div>
