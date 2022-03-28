@@ -13,7 +13,6 @@ type StarsProps = {
 function Stars(props: StarsProps): JSX.Element{
 
   const {starsList, onChangeData, currentValue} = props;
-
   return (
     <>
       {starsList.map((item)=> (
@@ -21,9 +20,10 @@ function Stars(props: StarsProps): JSX.Element{
           <input
             className="form__rating-input visually-hidden"
             name="rating"
-            value={`${currentValue}`}
+            value={`${item.id}`}
             id={`${item.id}-stars`}
             type="radio"
+            checked={item.id === currentValue}
             onChange={() => onChangeData(FormReviewKey.STARS, item.id)}
           />
           <label htmlFor={`${item.id}-stars`} className="reviews__rating-label form__rating-label" title="perfect">

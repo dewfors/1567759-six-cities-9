@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Dispatch, createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandle } from '../services/error-handle';
 import {dropToken, saveToken} from '../services/token';
 import {Offer, Offers} from '../types/offers';
@@ -10,10 +10,12 @@ import { setAuthStatus } from './reducers/auth-reducer';
 import { loadOffersNearby } from './reducers/offers-nearby-reducer';
 import { changeFavoriteStatus, setOffers } from './reducers/offers-reducer';
 import { setUser } from './reducers/user-reducer';
-import {NewReview, Reviews} from '../types/review';
+import {CommentDataType, NewReview, Reviews} from '../types/review';
 import { loadComments, resetComments } from './reducers/reviews-reducer';
 import { NewStatus } from '../types/favorite-status';
 import { loadOffersFavorites } from './reducers/offers-favorites';
+import { AxiosInstance, AxiosResponse } from 'axios';
+import { StateType } from '../types/stateType';
 
 
 export const fetchOfferAction = createAsyncThunk(
@@ -53,17 +55,16 @@ export const fetchCommentsAction = createAsyncThunk(
   },
 );
 
-export const postCommentAction = createAsyncThunk(
-  'user/postComment',
-  async (newReview: NewReview) => {
-    try {
-      await api.post<NewReview>(`${APIRoute.Comments}/${newReview.id}`, newReview.review);
+export const postCommentAction = (newReview: NewReview, setUserData: (userData: CommentDataType) => void ) => (nextDispatch: Dispatch, getState: () => StateType, getApi: AxiosInstance) => {
+  getApi.post(`${APIRoute.Comments}/${newReview.id}`, newReview.review)
+    .then((response: AxiosResponse) => {
       store.dispatch(fetchCommentsAction(newReview.id));
-    } catch (error) {
+    })
+    .catch((error) => {
       errorHandle(error);
-    }
-  },
-);
+      setUserData(newReview.review);
+    });
+};
 
 export const fetchFavoriteAction = createAsyncThunk(
   'data/fetchFavoritesOffers',

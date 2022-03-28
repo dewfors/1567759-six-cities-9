@@ -35,15 +35,18 @@ function ReviewsForm(props: ReviewsFormProps): JSX.Element {
   };
 
   const onSubmit = (newReview: NewReview) => {
-    store.dispatch(postCommentAction(newReview));
+    store.dispatch(postCommentAction(newReview, setUserData));
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
+    const formData = userData;
+    setUserData({comment: '', rating: 0});
+
     onSubmit(
       {
-        review: userData,
+        review: formData,
         id: hotelId,
       },
     );
