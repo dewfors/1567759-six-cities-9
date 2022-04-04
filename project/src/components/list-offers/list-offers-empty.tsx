@@ -1,4 +1,4 @@
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 
 
 function ListOffersEmpty(): JSX.Element {

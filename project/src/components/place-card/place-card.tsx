@@ -4,7 +4,7 @@ import Premium from '../premium/premium';
 import AddFavoritesButton from './add-favorites-button';
 import {getStarsWidth} from '../../utils/utils';
 import {AppRoute, PageLocationType} from '../../utils/const';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 
 const getClassNameArticle = (type: string): string => type === PageLocationType.HOME
   ? 'cities__place-card place-card'

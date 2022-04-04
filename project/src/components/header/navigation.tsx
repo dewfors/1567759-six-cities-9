@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../utils/const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks/use-app-selector';
 import { getUserAction, logoutAction } from '../../store/api-actions';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
 
 function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();

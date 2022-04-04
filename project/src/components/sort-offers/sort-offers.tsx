@@ -1,8 +1,9 @@
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import React, { useState } from 'react';
 import { offersSortingTypes } from '../../utils/const';
 import {OffersSortingType} from '../../types/offers';
 import { setSortType } from '../../store/reducers/sort-reducer';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
 
 
 const getSortTypeName = (type: OffersSortingType): string => {

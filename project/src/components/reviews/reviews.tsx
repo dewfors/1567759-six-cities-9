@@ -1,7 +1,7 @@
 import ReviewsForm from '../reviews-form/reviews-form';
 import ReviewsList from './reviews-list';
 import {Comments} from '../../types/comments';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import React from 'react';
 import {AuthorizationStatus} from '../../utils/const';
 

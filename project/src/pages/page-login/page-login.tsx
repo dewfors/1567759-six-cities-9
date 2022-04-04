@@ -1,6 +1,6 @@
 import React, {FormEvent, useEffect, useRef } from 'react';
 import Header from '../../components/header/header';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/user-data';
 import {getRandomCity} from '../../utils/utils';
@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 import browserHistory from '../../services/browser-history';
 import {AppRoute, AuthorizationStatus} from '../../utils/const';
 import { redirectToRoute } from '../../store/reducers/actions';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
 
 
 function PageLogin(): JSX.Element {

@@ -6,7 +6,7 @@ import PageOffer from '../../pages/page-offer/page-offer';
 import PageNotFound from '../../pages/page-not-found/page-not-found';
 import PrivateRoute from '../private-route/private-route';
 import PageFavorites from '../../pages/page-favorites/page-favorites';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import LoadingScreen from '../loading-screen/loading-screen';
 import HistoryRouter from '../history-router/history-router';
 import browserHistory from '../../services/browser-history';

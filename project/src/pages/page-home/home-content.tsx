@@ -4,7 +4,7 @@ import ListOffers from '../../components/list-offers/list-offers';
 import Map from '../../components/map/map';
 import {PageLocationType, SortTypes} from '../../utils/const';
 import SortOffers from '../../components/sort-offers/sort-offers';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 
 
 type sortFunctionType = (a: Offer, b: Offer) => number;

@@ -6,7 +6,7 @@ import {AppRoute, PageLocationType} from '../../utils/const';
 import {Offers} from '../../types/offers';
 import ListOffers from '../../components/list-offers/list-offers';
 import {useParams} from 'react-router-dom';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import PageNotFound from '../page-not-found/page-not-found';
 import Gallery from './gallery';
 import {getStarsWidth} from '../../utils/utils';

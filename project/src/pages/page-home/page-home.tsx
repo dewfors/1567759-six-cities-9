@@ -4,7 +4,7 @@ import Main from '../../components/main/main';
 import HomeContent from './home-content';
 import CityList from '../../components/cities-list/cities-list';
 import ListOffersEmpty from '../../components/list-offers/list-offers-empty';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 
 
 function PageHome(): JSX.Element {

@@ -1,7 +1,7 @@
-import { useAppDispatch } from '../../hooks';
 import { setCityName } from '../../store/reducers/city-reducer';
 import {Settings} from '../../utils/const';
 import {Link} from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
 
 function CityList(props: { city: string }) {
   const {city} = props;
@@ -18,9 +18,6 @@ function CityList(props: { city: string }) {
               <Link className={className} to={'/'}>
                 <span>{cityName}</span>
               </Link>
-              {/*<a className={className} href="#locations__item">*/}
-              {/*  <span>{cityName}</span>*/}
-              {/*</a>*/}
             </li>
           );
         })}

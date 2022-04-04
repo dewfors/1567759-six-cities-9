@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Header from '../../components/header/header';
 import ListOffersFavorite from '../../components/list-offers/list-offers-favorite';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/use-app-selector';
 import store from '../../store';
 import {fetchFavoriteAction} from '../../store/api-actions';
 
